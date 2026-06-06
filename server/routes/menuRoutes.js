@@ -5,18 +5,27 @@ const Menu = require("../models/Menu");
 // ✅ Create / Update Menu API
 router.post("/", async (req, res) => {
   try {
+    const { date, meals } = req.body;
+
+    if (!date || !meals) {
+      return res.status(400).json({
+        error: "Missing required fields"
+      });
+    }
+
     const menu = await Menu.findOneAndUpdate(
-      { date: req.body.date },   // match today's date
-      req.body,
-      { new: true, upsert: true } // update if exists, else create
+      { date: date },   // ensure exact match
+      { date, meals },
+      { new: true, upsert: true }
     );
 
-    res.status(201).json({
-      message: "Menu created successfully",
+    res.status(200).json({
+      message: "Menu saved successfully",
       data: menu
     });
 
   } catch (err) {
+    console.error("MENU ERROR:", err.message);
     res.status(500).json({
       error: err.message
     });
