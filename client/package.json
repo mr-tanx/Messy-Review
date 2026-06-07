@@ -20,17 +20,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "build": "CI=false react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build": "CI=false react-scripts build"
+    "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-  "extends": ["react-app"],
-  "rules": {
-    "no-unused-vars": "off",
-    "no-undef": "off"
-  }
-  },
+
   "browserslist": {
     "production": [
       ">0.2%",
@@ -47,5 +41,12 @@
     "autoprefixer": "^10.5.0",
     "postcss": "^8.5.15",
     "tailwindcss": "^3.4.1"
+  },
+  "eslintConfig": {
+  "extends": ["react-app"],
+  "rules": {
+    "no-unused-vars": "off",
+    "no-undef": "off"
   }
+}
 }
